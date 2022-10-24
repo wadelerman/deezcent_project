@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1057274683465",
+    "project_id": "deezcent-a8241",
+    "storage_bucket": "deezcent-a8241.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057274683465:android:5e8accd6947760b2b21f98",
+        "android_client_info": {
+          "package_name": "com.wade.deezcent_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057274683465-0di5nnlb9mmuba2imdgfuo3mvj1pgcae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5xLF58BMtnDnNsQ2vvrkpPlhJdbORv4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057274683465-0di5nnlb9mmuba2imdgfuo3mvj1pgcae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
