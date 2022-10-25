@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:deezcent_project/common/button_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -41,20 +42,25 @@ class _LoginState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.phishing_sharp,
-                size: 100,
+                Icons.flash_on_outlined,
+                size: 75,
                 color: Colors.teal[600],
               ),
 
               SizedBox(height: 20),
-              Text('Welcome back!',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24)),
+              Text(
+                'Welcome back!',
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24),
+                textAlign: TextAlign.center,
+              ),
               SizedBox(height: 10),
               //Top Subtitle text
               Center(
-                child: Text('Silahkan issi email dan password untuk login',
-                    style:
-                        TextStyle(fontWeight: FontWeight.w200, fontSize: 20)),
+                child: Text(
+                  'Silahkan isi email dan password untuk login',
+                  style: TextStyle(fontWeight: FontWeight.w200, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
               ),
 
               //Login innput box
@@ -128,11 +134,18 @@ class _LoginState extends State<LoginScreen> {
 
               //forgot password text
               SizedBox(height: 20),
-              Center(child: Text('Lupa Password?'))
+              Center(child: Text('Lupa Password?')),
+
+              loginButton(),
             ],
           ),
         ),
       )),
     );
   }
+
+  Widget loginButton() => Builder(
+      builder: (context) => ButtonWidget("Masuk", 0, () {
+            FocusScope.of(context).unfocus();
+          }));
 }

@@ -16,13 +16,13 @@ class ButtonWidget extends StatelessWidget {
       height: 55,
       width: double.infinity,
       margin: EdgeInsets.symmetric(
-        horizontal: 14,
+        horizontal: 25,
         vertical: verticalMargin,
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
         onPressed: onPressedHandler,
