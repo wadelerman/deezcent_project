@@ -51,8 +51,11 @@ class _LoginState extends State<LoginScreen> {
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 24)),
               SizedBox(height: 10),
               //Top Subtitle text
-              Text('Silahkan isi email dan password untuk login',
-                  style: TextStyle(fontWeight: FontWeight.w200, fontSize: 20)),
+              Center(
+                child: Text('Silahkan issi email dan password untuk login',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w200, fontSize: 20)),
+              ),
 
               //Login innput box
               SizedBox(height: 20),

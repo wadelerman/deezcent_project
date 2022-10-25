@@ -1,4 +1,4 @@
-import 'package:deezcent_project/main_page.dart';
+import 'package:deezcent_project/modules/auth/screens/main_page.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
@@ -17,7 +17,7 @@ class Deezcent extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Circular'),
+      theme: ThemeData(fontFamily: 'Circular', primaryColor: Colors.teal[600]),
       home: const MainPage(),
     );
   }
