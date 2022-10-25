@@ -110,33 +110,35 @@ class _LoginState extends State<LoginScreen> {
 
               //login button
               SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: GestureDetector(
-                  onTap: signIn,
-                  child: Container(
-                    padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: Colors.teal[800],
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Center(
-                      child: Text('Login',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          )),
-                    ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              //   child: GestureDetector(
+              //     onTap: signIn,
+              //     child: Container(
+              //       padding: EdgeInsets.all(15),
+              //       decoration: BoxDecoration(
+              //         color: Colors.teal[800],
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //       child: Center(
+              //         child: Text('Login',
+              //             style: TextStyle(
+              //               fontSize: 17,
+              //               fontWeight: FontWeight.w600,
+              //               color: Colors.white,
+              //             )),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+
+              SizedBox(height: 20),
+              loginButton(),
+              // GestureDetector(onTap: signIn, child: loginButton()),
 
               //forgot password text
               SizedBox(height: 20),
               Center(child: Text('Lupa Password?')),
-
-              loginButton(),
             ],
           ),
         ),
@@ -145,7 +147,6 @@ class _LoginState extends State<LoginScreen> {
   }
 
   Widget loginButton() => Builder(
-      builder: (context) => ButtonWidget("Masuk", 0, () {
-            FocusScope.of(context).unfocus();
-          }));
+        builder: (context) => ButtonWidget("Login", 0, signIn),
+      );
 }

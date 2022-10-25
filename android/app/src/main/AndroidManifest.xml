@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.deezcent_project">
+    package="com.wade.deezcent_project">
    <application
         android:label="Deezcent"
         android:name="${applicationName}"
