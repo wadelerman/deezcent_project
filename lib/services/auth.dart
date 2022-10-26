@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:deezcent_project/services/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:deezcent_project/modules/user.dart';
 
 class AuthService {
@@ -15,11 +15,10 @@ class AuthService {
   }
 
   // auth change user stream
-  Stream<LocalUser> get user {
-    return _auth
-        .authStateChanges()
-        //.map((FirebaseAuth user) => _userFromFirebaseUser(user));
-        .map(_userFromFirebaseUser);
+  Stream<User?> get user {
+    return _auth.authStateChanges();
+    //.map((FirebaseAuth user) => _userFromFirebaseUser(user));
+    // .map(_userFromFirebaseUser);
   }
 
   // sign in anon
@@ -54,8 +53,9 @@ class AuthService {
           email: email, password: password);
       FirebaseAuth user = result.user as FirebaseAuth;
       // create a new document for the user with the uid
+
       await DatabaseService(uid: user.uid)
-          .updateUserData('0', 'new crew member', 100);
+          .updateUserData('first name', 'last name');
       return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());
