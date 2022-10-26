@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:deezcent_project/common/button_widget.dart';
+import 'package:deezcent_project/services/auth.dart';
 
 import '../../../shared/loading.dart';
 
@@ -29,7 +30,6 @@ class _LoginState extends State<LoginScreen> {
         password: _passwordController.text.trim(),
       );
     } catch (error) {
-      print(error.toString());
       setState(() {
         loading = false;
       });
