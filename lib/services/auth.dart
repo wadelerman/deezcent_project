@@ -6,22 +6,27 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // create user obj based on firebase user
-  User _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? User(uid: user.uid) : null;
+  LocalUser? _userFromFirebaseUser(user) {
+    if (user != null) {
+      return LocalUser(uid: user.uid);
+    } else {
+      return null;
+    }
   }
 
   // auth change user stream
-  Stream<User> get user {
-    return _auth.onAuthStateChanged
-        //.map((FirebaseUser user) => _userFromFirebaseUser(user));
+  Stream<LocalUser> get user {
+    return _auth
+        .authStateChanges()
+        //.map((FirebaseAuth user) => _userFromFirebaseUser(user));
         .map(_userFromFirebaseUser);
   }
 
   // sign in anon
   Future signInAnon() async {
     try {
-      AuthResult result = await _auth.signInAnonymously();
-      FirebaseUser user = result.user;
+      UserCredential result = await _auth.signInAnonymously();
+      FirebaseAuth user = result.user as FirebaseAuth;
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -32,9 +37,9 @@ class AuthService {
   // sign in with email and password
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(
+      UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser user = result.user;
+      FirebaseAuth user = result.user as FirebaseAuth;
       return user;
     } catch (error) {
       print(error.toString());
@@ -42,12 +47,12 @@ class AuthService {
     }
   }
 
-  // register with email and password
+  // register new user
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser user = result.user;
+      FirebaseAuth user = result.user as FirebaseAuth;
       // create a new document for the user with the uid
       await DatabaseService(uid: user.uid)
           .updateUserData('0', 'new crew member', 100);
