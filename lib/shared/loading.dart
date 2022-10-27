@@ -8,9 +8,11 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.teal[600],
+      // ignore: prefer_const_constructors
       child: Center(
+        // ignore: prefer_const_constructors
         child: SpinKitDoubleBounce(
-          color: Colors.amber[50],
+          color: Colors.white,
           size: 50.0,
         ),
       ),

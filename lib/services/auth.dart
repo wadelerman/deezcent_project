@@ -47,21 +47,21 @@ class AuthService {
   }
 
   // register new user
-  Future registerWithEmailAndPassword(String email, String password) async {
-    try {
-      UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      FirebaseAuth user = result.user as FirebaseAuth;
-      // create a new document for the user with the uid
+  // Future registerWithEmailAndPassword(String email, String password) async {
+  //   try {
+  //     UserCredential result = await _auth.createUserWithEmailAndPassword(
+  //         email: email, password: password);
+  //     FirebaseAuth user = result.user as FirebaseAuth;
+  //     // create a new document for the user with the uid
 
-      await DatabaseService(uid: user.uid)
-          .updateUserData('first name', 'last name');
-      return _userFromFirebaseUser(user);
-    } catch (error) {
-      print(error.toString());
-      return null;
-    }
-  }
+  //     await DatabaseService(uid: user.uid)
+  //         .updateUserData('first name', 'last name');
+  //     return _userFromFirebaseUser(user);
+  //   } catch (error) {
+  //     print(error.toString());
+  //     return null;
+  //   }
+  // }
 
   // sign out
   Future signOut() async {
