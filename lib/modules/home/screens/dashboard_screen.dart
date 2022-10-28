@@ -1,7 +1,9 @@
+import 'package:deezcent_project/modules/forms/screens/navigator_test.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../../forms/screens/form_screen_fixed.dart';
 
 void main() {
   runApp(const DashBoard());
@@ -17,6 +19,7 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   int _selectedIndex = 0;
   final user = FirebaseAuth.instance.currentUser!;
+  final classForm = const Forms();
 
   void _onItemTapped(int index) {
     setState(() {
@@ -24,12 +27,27 @@ class _DashBoardState extends State<DashBoard> {
     });
     if (_selectedIndex == 2) {
       FirebaseAuth.instance.signOut();
+    } else if (_selectedIndex == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Forms()),
+      );
     }
   }
 
   void _selectMenu(int index) {
-    if (_selectedIndex == 2) {
-      FirebaseAuth.instance.signOut();
+    if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Forms()),
+      );
+    }
+    // ignore: no_leading_underscores_for_local_identifiers
+    else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Bruhhh()),
+      );
     }
   }
 
@@ -46,7 +64,7 @@ class _DashBoardState extends State<DashBoard> {
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.person_fill),
+              icon: Icon(CupertinoIcons.square_list_fill),
               label: '',
             ),
             BottomNavigationBarItem(
@@ -122,14 +140,13 @@ class _DashBoardState extends State<DashBoard> {
 
 Widget courseLayout(BuildContext context) {
   List<String> imageFileList = [
-    'go.png',
-    'nodejs.png',
-    'flutter.png',
-    'dart.png',
-    'react.png',
-    'vue.png',
-    'firebase.png',
-    'postgres.png',
+    'gold.png',
+    'lavender.png',
+    'leaf.png',
+    'merah.png',
+    'navy.png',
+    'purple.png',
+    'teal.png',
   ];
 
   return MasonryGridView.count(
@@ -145,8 +162,9 @@ Widget courseLayout(BuildContext context) {
 
       return ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: GestureDetector(
-          onDoubleTap: () => ontaps._selectMenu(indexes),
+        child: InkWell(
+          onTap: () => ontaps._selectMenu(indexes),
+          onDoubleTap: () => print(indexes),
           child: Image.asset(
             'lib/assets/images/${imageFileList[index]}',
           ),

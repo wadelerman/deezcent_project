@@ -7,7 +7,7 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case myhomepageRoute:
-        return MaterialPageRoute(builder: (_) => const MyHomePage());
+        return MaterialPageRoute(builder: (_) => const FormsPage());
       case myprofileRoute:
         return MaterialPageRoute(builder: (_) => MyProfilePage());
       default:
@@ -31,19 +31,19 @@ class _FormsState extends State<Forms> {
   Widget build(BuildContext context) {
     return const MaterialApp(
         title: "Human IT Care",
-        home: MyHomePage(),
+        home: FormsPage(),
         onGenerateRoute: Router.generateRoute,
         initialRoute: myhomepageRoute);
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class FormsPage extends StatefulWidget {
+  const FormsPage({Key? key}) : super(key: key);
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _FormsPageState createState() => _FormsPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _FormsPageState extends State<FormsPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   String firstName = "";
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(fontWeight: FontWeight.w700))),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(firstName + " " + lastName),
+                  child: Text("$firstName $lastName"),
                 ),
                 const SizedBox(
                   height: 10,
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(
-                    primary: Colors.white,
+                    // foregroundColor: Colors.white,
                     backgroundColor: Colors.grey,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -355,6 +355,6 @@ class _MyProfilePageState extends State<MyProfilePage> {
 extension StringExtension on String {
   // Method used for capitalizing the input from the form
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1)}";
+    return "${this[0].toUpperCase()}${substring(1)}";
   }
 }
