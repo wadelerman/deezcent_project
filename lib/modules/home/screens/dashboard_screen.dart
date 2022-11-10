@@ -20,20 +20,7 @@ class _DashBoardState extends State<DashBoard> {
   int _selectedIndex = 0;
   final user = FirebaseAuth.instance.currentUser!;
   final classForm = const Forms();
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (_selectedIndex == 2) {
-      FirebaseAuth.instance.signOut();
-    } else if (_selectedIndex == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Forms()),
-      );
-    }
-  }
+  final ScrollController _homeController = ScrollController();
 
   void _selectMenu(int index) {
     if (index == 2) {
@@ -61,21 +48,38 @@ class _DashBoardState extends State<DashBoard> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.house_fill),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.square_list_fill),
-              label: '',
+              label: 'Dashboard',
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.clear_circled_solid),
-              label: '',
+              label: 'Logout',
             ),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.teal[600],
           unselectedItemColor: const Color(0xffD3DEFA),
-          onTap: _onItemTapped,
+          onTap: (int index) {
+            switch (index) {
+              case 0:
+                // only scroll to top when current index is selected.
+                if (_selectedIndex == index) {
+                  _homeController.animateTo(
+                    0.0,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOut,
+                  );
+                }
+                break;
+              case 1:
+                showModal(context);
+                break;
+            }
+            setState(
+              () {
+                _selectedIndex = 0;
+              },
+            );
+          },
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(
@@ -171,5 +175,34 @@ Widget courseLayout(BuildContext context) {
         ),
       );
     },
+  );
+}
+
+void showModal(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      content: const Text('Apakah anda yakin untuk logout?'),
+      actions: <TextButton>[
+        TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Tutup',
+              style: TextStyle(color: Colors.grey),
+            )),
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+            FirebaseAuth.instance.signOut();
+          },
+          child: const Text(
+            'Ya, logout',
+            style: TextStyle(color: Colors.teal),
+          ),
+        ),
+      ],
+    ),
   );
 }
